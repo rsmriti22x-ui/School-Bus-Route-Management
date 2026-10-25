@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Bus Route Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div id="loginScreen">
+  <form id="loginForm">
+    <h2>Admin Login</h2>
+    <input id="loginUser" placeholder="Username" required>
+    <input id="loginPass" type="password" placeholder="Password" required>
+    <p id="loginerr"></p>
+    <button type="submit">Sign in</button>
+  </form>
+ </div>
+  <header>
+    <h1>School Bus Route Management</h1>
+    <button id="logoutBtn">Logout</button>
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#buses">Buses</a>
+        <a href="#drivers">Drivers</a>
+        <a href="#routes">Routes</a>
+        <a href="#students">Students</a>
+    </nav>
+  </header> 
+  <main>
+    <section id="dashboard">
+    <h2>Dashboard</h2>
+    <div class="stats">
+        <div class="stat"><b id="cBuses">0</b>Buses</div>
+        <div class="stat"><b id="cDrivers">0</b>Drivers</div>
+        <div class="stat"><b id="cRoutes">0</b>Routes</div>
+        <div class="stat"><b id="cStudents">0</b>Students</div>
+    </div>    
+  </section>
+  <section id="buses">
+    <h2>Buses</h2>
+    <form id="busForm">
+      <input id="busNo" placeholder="Bus number" required>
+      <input id="busCap" type="number" placeholder="Capacity" required>
+      <button type="submit">Add bus</button>
+    </form>
+    <input id="busSearch" placeholder="Search buses...">
+    <table>
+      <thead><tr><th>Bus no.</th><th>Capacity</th><th></th></tr></thead>
+      <tbody id="busTable"></tbody>
+    </table>
+  </section>
+  <section id="drivers">
+    <h2>Drivers</h2>
+    <form id="driverForm">
+      <input id="drvName" placeholder="Driver name" required>
+      <input id="drvPhone" placeholder="Phone" pattern="[0-9]{10}" maxlength="10" required>
+      <button type="submit">Add driver</button>
+    </form>
+    <input id="drvSearch" placeholder="Search drivers...">
+    <table>
+      <thead><tr><th>Name</th><th>Phone</th><th></th></tr></thead>
+      <tbody id="driverTable"></tbody>
+    </table>
+  </section>
+  <section id="routes">
+    <h2>Routes</h2>
+    <form id="routeForm">
+      <input id="rtName" placeholder="Route name" required>
+      <select id="rtBus" required></select>
+      <select id="rtDriver" required></select>
+      <input id="rtTime" type="time" required>
+      <input id="rtStops" placeholder="Stops (comma separated)" required>
+      <button type="submit">Add route</button>
+    </form>
+    <input id="rtSearch" placeholder="Search routes...">
+    <table>
+      <thead><tr><th>Route</th><th>Bus</th><th>Driver</th><th>Time</th><th>Stops</th><th></th></tr></thead>
+      <tbody id="routeTable"></tbody>
+    </table>
+  </section>
+  <section id="students">
+    <h2>Students</h2>
+    <form id="studentForm">
+      <input id="stName" placeholder="Student name" required>
+      <input id="stClass" placeholder="Class" required>
+      <select id="stRoute" required></select>
+      <button type="submit">Assign student</button>
+    </form>
+    <input id="stSearch" placeholder="Search students...">
+    <table>
+      <thead><tr><th>Name</th><th>Class</th><th>Route</th><th></th></tr></thead>
+      <tbody id="studentTable"></tbody>
+    </table>
+  </section>
+  </main> 
+  
+  <script src="script.js"></script>
+</body>
+</html>
