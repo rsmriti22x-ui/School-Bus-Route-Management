@@ -16,17 +16,51 @@ function uid() {
 // ---------- 2. Load and save data ----------
 var data = { buses: [], drivers: [], routes: [], students: [] };
 
-try {
-  var saved = JSON.parse(localStorage.getItem("sbrmData"));
-  if (saved) data = saved;
-} catch (e) {
-  // if storage is blocked, we just start with empty data
-}
-
 function save() {
   try {
     localStorage.setItem("sbrmData", JSON.stringify(data));
   } catch (e) {}
+}
+
+// Sample data: shown the first time someone opens the site,
+// so the tables are not empty. After that, their own changes are saved.
+function sampleData() {
+  return {
+    buses: [
+      { id: "b1", number: "PB-10-1234", capacity: 40 },
+      { id: "b2", number: "PB-10-5678", capacity: 30 },
+      { id: "b3", number: "PB-65-9012", capacity: 3 }
+    ],
+    drivers: [
+      { id: "d1", name: "Ramesh Kumar", phone: "9876500001" },
+      { id: "d2", name: "Sukhdev Singh", phone: "9876500002" },
+      { id: "d3", name: "Balwinder Singh", phone: "9876500003" }
+    ],
+    routes: [
+      { id: "r1", name: "North Route", busId: "b1", driverId: "d1", time: "07:15", stops: "Main Gate, Model Town, Sector 5, School" },
+      { id: "r2", name: "East Route", busId: "b2", driverId: "d2", time: "07:30", stops: "Bus Stand, Green Park, School" },
+      { id: "r3", name: "Mini Route", busId: "b3", driverId: "d3", time: "07:45", stops: "Civil Lines, School" }
+    ],
+    students: [
+      { id: "s1", name: "Aarav Sharma", cls: "6-A", routeId: "r1" },
+      { id: "s2", name: "Diya Verma", cls: "7-B", routeId: "r2" },
+      { id: "s3", name: "Kabir Singh", cls: "5-C", routeId: "r3" },
+      { id: "s4", name: "Meera Kaur", cls: "8-A", routeId: "r3" }
+    ]
+  };
+}
+
+try {
+  var saved = JSON.parse(localStorage.getItem("sbrmData"));
+  if (saved) {
+    data = saved;
+  } else {
+    data = sampleData();
+    save();
+  }
+} catch (e) {
+  // if storage is blocked, we still show the sample data
+  data = sampleData();
 }
 
 // ---------- 3. Login and logout ----------
